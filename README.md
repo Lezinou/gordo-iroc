@@ -51,3 +51,4 @@ machines, where each machine has a unique name, followed by `tags` key and a lis
 ## Deployments:
 
 Simply make your changes to the `config.yaml` file and commit to `master` branch of the repository. The Gordo ML Platform will take care of the rest. 
+# gordo-aery
