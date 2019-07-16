@@ -98,9 +98,7 @@ local wfparams = std.extVar("__ksonnet/params").components["workflow-initiator"]
                          {
                              "name": "WORKFLOW_GENERATOR_PROJECT_NAME",
                              "value": wfparams.projectName
-                         }
-
-                         /*
+                         },
 
                          {
                              "name": "WORKFLOW_GENERATOR_TAG_FETCHER_VERSION",
@@ -118,9 +116,14 @@ local wfparams = std.extVar("__ksonnet/params").components["workflow-initiator"]
                          },
 
                          {
+                             "name": "WORKFLOW_GENERATOR_CLIENT_VERSION",
+                             "value": wfparams.clientVersion
+                         },
+
+                         {
                              "name": "WORKFLOW_GENERATOR_WATCHMAN_VERSION",
                              "value": wfparams.watchmanVersion
-                         } */
+                         }
                      ],
                   }
                ],
