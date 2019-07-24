@@ -12,7 +12,7 @@
       serviceAccountName: "gordo-workflow-runner",
       namespace: "kubeflow",
       roleName: "submit-workflows-role",
-      projectName: "iroc-production",
+      projectName: "iroc-preprod",
       tagFetcherVersion: "17cdd4b6",
       modelBuilderVersion: "17cdd4b6",
       modelServerVersion: "17cdd4b6",

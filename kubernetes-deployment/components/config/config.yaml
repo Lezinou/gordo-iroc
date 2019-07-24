@@ -8,6 +8,13 @@ machines:
       - NINENINE.UISFLD::NNWAERYDR02.WHTBGPRS
       train_start_date: 2018-06-10T00:00:00+00:00
       train_end_date: 2018-07-05T00:00:00+00:00
+    metadata:
+      information: 'Paraffin build-up use-case.'
+      author: 'Lezin Galibert'
+      asset: 'AERY D2'
+      node-id: ''
+      threshold: '0.5'
+
     model:
       sklearn.pipeline.Pipeline:
         steps:
@@ -30,6 +37,12 @@ machines:
       - UON_EF.OPCIS::LO006-B1H_M1.RTGASDIN
       train_start_date: 2018-06-10T00:00:00+01:00
       train_end_date: 2018-07-20T00:00:00+01:00
+    metadata:
+      information: 'Liquid loading use-case.'
+      author: 'Lezin Galibert'
+      asset: 'Three Rivers B1'
+      node-id: ''
+      threshold: '0.5'
     model:
       sklearn.pipeline.Pipeline:
         steps:
@@ -41,7 +54,7 @@ machines:
             dec_dim: [3]
             enc_func: [tanh,tanh]
             dec_func: [tanh]
-            
+
   - name: tilden-post-lift
     dataset:
       type: TimeSeriesDataset
@@ -53,6 +66,12 @@ machines:
       - NINENINE.UISFLD::NNWPOWTILOR21.GASFLW
       train_start_date: 2018-11-15T00:00:00+00:00
       train_end_date: 2018-12-15T00:00:00+00:00
+    metadata:
+      information: 'Normality check use-case.'
+      author: 'Lezin Galibert'
+      asset: 'Tilden Unit O 2H'
+      node-id: ''
+      threshold: '0.5'
     model:
       sklearn.pipeline.Pipeline:
         steps:
