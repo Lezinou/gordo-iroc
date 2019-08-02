@@ -8,13 +8,13 @@ machines:
       - NINENINE.UISFLD::NNWAERYDR02.WHTBGPRS
       train_start_date: 2018-06-10T00:00:00+00:00
       train_end_date: 2018-07-05T00:00:00+00:00
+      threads: 300
     metadata:
       information: 'Paraffin build-up use-case.'
       author: 'Lezin Galibert'
       asset: 'AERY D2'
       node-id: ''
       threshold: '0.5'
-
     model:
       sklearn.pipeline.Pipeline:
         steps:
@@ -37,6 +37,7 @@ machines:
       - UON_EF.OPCIS::LO006-B1H_M1.RTGASDIN
       train_start_date: 2018-06-10T00:00:00+01:00
       train_end_date: 2018-07-20T00:00:00+01:00
+      threads: 300
     metadata:
       information: 'Liquid loading use-case.'
       author: 'Lezin Galibert'
@@ -66,6 +67,7 @@ machines:
       - NINENINE.UISFLD::NNWPOWTILOR21.GASFLW
       train_start_date: 2018-11-15T00:00:00+00:00
       train_end_date: 2018-12-15T00:00:00+00:00
+      threads: 300
     metadata:
       information: 'Normality check use-case.'
       author: 'Lezin Galibert'
@@ -85,3 +87,46 @@ machines:
             enc_func: [tanh,tanh]
             dec_func: [tanh]
             out_func: linear
+
+  - name: tilden-pre-lift
+    dataset:
+      type: TimeSeriesDataset
+      tags: 
+      - NINENINE.UISFLD::NNWPOWTILOR01.GASFLW
+      - NINENINE.UISFLD::NNWPOWTILOR01.GASPRS
+      - NINENINE.UISFLD::NNWPOWTILOR01.WHCSGPRS
+      - NINENINE.UISFLD::NNWPOWTILOR01.WHTBGPRS
+      - NINENINE.UISFLD::NNWPOWTILOR21.GASFLW
+      train_start_date: 2018-05-15T00:00:00+00:00
+      train_end_date: 2018-07-01T00:00:00+00:00
+      threads: 300
+    metadata:
+      information: 'Normality check use-case, underlines the importance of maintaining the models after major changes on assets (Artificial lift here).'
+      author: 'Lezin Galibert'
+      asset: 'Tilden Unit O 2H'
+      node-id: ''
+      threshold: '0.5'
+    model:
+      sklearn.pipeline.Pipeline:
+        steps:
+        - sklearn.pipeline.FeatureUnion:
+          - sklearn.preprocessing.data.MinMaxScaler
+        - gordo_components.model.models.KerasLSTMAutoEncoder:
+            kind: lstm_model
+            lookback_window: 72
+            enc_dim: [20,10]
+            dec_dim: [20]
+            enc_func: [tanh,tanh]
+            dec_func: [tanh]
+            out_func: linear
+
+globals:
+  runtime:
+    builder:
+      resources:
+        requests:
+          memory: 5000
+    client:
+      resources:
+        requests:
+          memory: 5000
